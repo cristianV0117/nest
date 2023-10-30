@@ -4,10 +4,8 @@ import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { CreateItemRequest } from './request/create-item-request';
 import { Item } from './entities/item.entity';
-import { ItemsReceivedController } from 'src/items_received/items_received.controller';
-import { CreateItemsReceivedDto } from 'src/items_received/dto/create-items_received.dto';
 import { ItemReceivedRequest } from 'src/items_received/request/item-received-request';
-import { ItemsReceivedService } from 'src/items_received/items_received.service';
+import { io } from "socket.io-client";
 
 @Controller('items')
 export class ItemsController {
@@ -26,6 +24,12 @@ export class ItemsController {
 
   getItemReceived(itemReceived: ItemReceivedRequest) {
     this.itemsService.itemReceived(itemReceived)
+    const socket = io("http://localhost:3000")
+    socket.emit('message', { data: "hola" })
+    socket.on('message', ({ data }) => {
+      console.log(data)
+      socket.disconnect()
+    })
   }
 
   @Get()

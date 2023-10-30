@@ -7,6 +7,8 @@ import { CatsModule } from './cats/cats.module';
 import { ItemsReceivedModule } from './items_received/items_received.module';
 import { Item } from './items/entities/item.entity';
 import { ItemsReceived } from './items_received/entities/items_received.entity';
+import { ChatGateway } from './chat/chat.gateway';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -37,8 +39,9 @@ import { ItemsReceived } from './items_received/entities/items_received.entity';
       entities: [ItemsReceived],
       synchronize: true
     }),
+    EventsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ChatGateway],
 })
 export class AppModule {}
