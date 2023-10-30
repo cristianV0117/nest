@@ -5,41 +5,16 @@ import { ItemsModule } from './items/items.module';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { CatsModule } from './cats/cats.module';
 import { ItemsReceivedModule } from './items_received/items_received.module';
-import { Item } from './items/entities/item.entity';
-import { ItemsReceived } from './items_received/entities/items_received.entity';
 import { ChatGateway } from './chat/chat.gateway';
-import { EventsModule } from './events/events.module';
+import { databaseSource } from './database_source';
 
 @Module({
   imports: [
     ItemsModule,
     ItemsReceivedModule,
     CatsModule,
-    TypeOrmModule.forRoot({
-      name: 'nest',
-      type: 'mysql',
-      host: 'localhost',
-      username: 'root',
-      password: '',
-      port: 3306,
-      database: 'nest',
-      //entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      entities: [Item],
-      synchronize: true
-    }),
-    TypeOrmModule.forRoot({
-      name: 'nestdocker',
-      type: 'mysql',
-      host: 'localhost',
-      username: 'root',
-      password: 'nestdocker',
-      port: 3307,
-      database: 'nestdocker',
-      //entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      entities: [ItemsReceived],
-      synchronize: true
-    }),
-    EventsModule,
+    TypeOrmModule.forRoot(databaseSource[0]),
+    TypeOrmModule.forRoot(databaseSource[1]),
   ],
   controllers: [AppController],
   providers: [AppService, ChatGateway],
