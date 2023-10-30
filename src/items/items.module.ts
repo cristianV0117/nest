@@ -4,6 +4,9 @@ import { ItemsController } from './items.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from './entities/item.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ItemIndexController } from './infrastructure/controllers/item-index.controller';
+import { ItemsOrmRepository } from './infrastructure/repositories/orm/items-orm.repository';
+import { ItemIndexUseCase } from './application/get/item-index.usecase';
 
 @Module({
   imports: [
@@ -20,7 +23,10 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       }
     }]),
   ],
-  controllers: [ItemsController],
-  providers: [ItemsService],
+  controllers: [ItemsController, ItemIndexController],
+  providers: [ItemsService, {
+    provide: ItemIndexUseCase,
+    useClass: ItemsOrmRepository
+  }],
 })
 export class ItemsModule {}
