@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { UpdateItemDto } from './dto/update-item.dto';
+import { UpdateItemDto } from './infrastructure/dto/update-item.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Item } from './entities/item.entity';
+import { Item } from './infrastructure/repositories/orm/item.entity';
 import { Repository } from 'typeorm';
-import { CreateItemRequest } from './request/create-item-request';
+import { CreateItemRequest } from './infrastructure/request/create-item-request';
 import { ClientProxy } from '@nestjs/microservices';
 import { ItemReceivedRequest } from 'src/items_received/request/item-received-request';
 

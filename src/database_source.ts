@@ -1,4 +1,4 @@
-import { Item } from './items/entities/item.entity';
+import { Item } from './items/infrastructure/repositories/orm/item.entity';
 import { ItemsReceived } from './items_received/entities/items_received.entity';
 import 'dotenv/config'
 

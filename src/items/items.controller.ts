@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Logger, Inject } from '@nestjs/common';
 import { ItemsService } from './items.service';
-import { CreateItemDto } from './dto/create-item.dto';
-import { UpdateItemDto } from './dto/update-item.dto';
-import { CreateItemRequest } from './request/create-item-request';
-import { Item } from './entities/item.entity';
+import { CreateItemDto } from './infrastructure/dto/create-item.dto';
+import { UpdateItemDto } from './infrastructure/dto/update-item.dto';
+import { CreateItemRequest } from './infrastructure/request/create-item-request';
+import { Item } from './infrastructure/repositories/orm/item.entity';
 import { ItemReceivedRequest } from 'src/items_received/request/item-received-request';
 import { io } from "socket.io-client";
 

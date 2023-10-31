@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ItemsService } from './items.service';
-import { ItemsController } from './items.controller';
+import { ItemsService } from '../../items.service';
+import { ItemsController } from '../../items.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Item } from './entities/item.entity';
+import { Item } from '../repositories/orm/item.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ItemIndexController } from './infrastructure/controllers/item-index.controller';
-import { ItemsOrmRepository } from './infrastructure/repositories/orm/items-orm.repository';
-import { ItemIndexUseCase } from './application/get/item-index.usecase';
+import { ItemIndexController } from '../controllers/item-index.controller';
+import { ItemsOrmRepository } from '../repositories/orm/items-orm.repository';
+import { ItemIndexUseCase } from '../../application/get/item-index.usecase';
 
 @Module({
   imports: [
