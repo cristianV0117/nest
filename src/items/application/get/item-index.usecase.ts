@@ -1,3 +1,4 @@
+import { Item } from "src/items/domain/Item";
 import { ItemsRepositoryInterface } from "src/items/domain/contracts/items-repository.interface";
 
 export class ItemIndexUseCase {

@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ItemsRepositoryInterface } from "src/items/domain/contracts/items-repository.interface";
-import { Item } from "src/items/entities/item.entity";
+import { Item } from "src/items/domain/Item";
 import { Repository } from "typeorm";
 
 @Injectable()
@@ -11,7 +11,8 @@ export class ItemsOrmRepository implements ItemsRepositoryInterface {
         @InjectRepository(Item, 'nest') private itemRepository: Repository<Item>,
     ) {}
     
-    index() {
-        return this.itemRepository.find();
+    async index(): Promise<Item> {
+        const promise = await this.itemRepository.find()
+        return new Item(Array.from(promise))
     }
 }

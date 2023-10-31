@@ -9,6 +9,6 @@ export class ItemIndexController {
 
   @Get()
   index() {
-    return this.useCase.index();
+    console.log(this.useCase.index())
   }
 }

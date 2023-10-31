@@ -1,3 +1,5 @@
+import { Item } from "../Item";
+
 export interface ItemsRepositoryInterface {
-    index()
+    index(): Promise<Item>
 }
