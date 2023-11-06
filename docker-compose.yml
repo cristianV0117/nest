@@ -20,3 +20,16 @@ services:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=nestdocker
       - MYSQL_TCP_PORT=3307
+  mongo:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    expose:
+      - 27017
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=nest
+      - MONGO_INITDB_ROOT_USERNAME=nest
+      - MONGO_INITDB_ROOT_PASSWORD=nest
+      - MONGO_INITDB_PORT=27017
