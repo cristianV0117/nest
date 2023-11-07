@@ -5,14 +5,21 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from './entities/item.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Item as ItemMongo, ItemSchema } from 'src/schemas/item.schema'; 
+import { Item as ItemMongo, ItemSchema } from 'src/schemas/item.schema';
+import { Category, CategorySchema } from 'src/schemas/category.schema'
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{
-      name: ItemMongo.name,
-      schema: ItemSchema
-    }]),
+    MongooseModule.forFeature([
+      {
+        name: ItemMongo.name,
+        schema: ItemSchema
+      },
+      {
+        name : Category.name,
+        schema: CategorySchema
+      }
+    ]),
     TypeOrmModule.forFeature([Item], 'nest'),
     ClientsModule.register([{
       name: 'CAT_SERVICE',

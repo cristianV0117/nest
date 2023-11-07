@@ -10,6 +10,7 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Item as ItemMongo } from 'src/schemas/item.schema';
 import { Model } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid'
+import { Category } from 'src/schemas/category.schema';
 
 @Injectable()
 export class ItemsService {
@@ -17,6 +18,7 @@ export class ItemsService {
   constructor(
     @InjectRepository(Item, 'nest') private itemRepository: Repository<Item>,
     @InjectModel(ItemMongo.name) private itemModel: Model<ItemMongo>,
+    @InjectModel(Category.name) private categoryModel: Model<Category>,
     @Inject('CAT_SERVICE') private client: ClientProxy
   ) {}
 
@@ -26,10 +28,22 @@ export class ItemsService {
       status: createItemDto.getStatus()
     })
     const item = await this.itemRepository.save(newItem)
+    const newCategory = await new this.categoryModel({
+      uuid: uuidv4(),
+      name: 'Example'
+    }).save()
     const newItemMongo = new this.itemModel({
       uuid: uuidv4(),
       name: createItemDto.getName(),
-      status: createItemDto.getStatus()
+      status: createItemDto.getStatus(),
+      address: {
+        kr: "carrera 1",
+        cll: "calle 30 sur",
+        no: "7b-16",
+        postal_code: 110421
+      },
+      colors: ["Amarillo", "Negro", "Cafe", "Gris"],
+      category: newCategory._id
     })
     newItemMongo.save()
     return item
@@ -41,6 +55,10 @@ export class ItemsService {
 
   findAll() {
     return this.itemRepository.find();
+  }
+
+  findAllMongo() {
+    return this.itemModel.find().populate('category')
   }
 
   async findOne(id: number) {

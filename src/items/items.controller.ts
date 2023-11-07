@@ -32,6 +32,11 @@ export class ItemsController {
     })
   }
 
+  @Get('/mongo')
+  findAllMongo() {
+    return this.itemsService.findAllMongo();
+  }
+
   @Get()
   findAll(): Promise<Item[]> {
     return this.itemsService.findAll();
