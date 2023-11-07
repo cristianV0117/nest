@@ -6,12 +6,17 @@ import { Repository } from 'typeorm';
 import { CreateItemRequest } from './request/create-item-request';
 import { ClientProxy } from '@nestjs/microservices';
 import { ItemReceivedRequest } from 'src/items_received/request/item-received-request';
+import { InjectModel } from '@nestjs/mongoose'
+import { Item as ItemMongo } from 'src/schemas/item.schema';
+import { Model } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid'
 
 @Injectable()
 export class ItemsService {
 
   constructor(
     @InjectRepository(Item, 'nest') private itemRepository: Repository<Item>,
+    @InjectModel(ItemMongo.name) private itemModel: Model<ItemMongo>,
     @Inject('CAT_SERVICE') private client: ClientProxy
   ) {}
 
@@ -21,6 +26,12 @@ export class ItemsService {
       status: createItemDto.getStatus()
     })
     const item = await this.itemRepository.save(newItem)
+    const newItemMongo = new this.itemModel({
+      uuid: uuidv4(),
+      name: createItemDto.getName(),
+      status: createItemDto.getStatus()
+    })
+    newItemMongo.save()
     return item
   }
 

@@ -8,6 +8,7 @@ import { ItemsReceivedModule } from './items_received/items_received.module';
 import { ChatGateway } from './chat/chat.gateway';
 import { databaseSource } from './database_source';
 import { ApiKeyMiddleware } from './middleware/api-key.middleware';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ApiKeyMiddleware } from './middleware/api-key.middleware';
     CatsModule,
     TypeOrmModule.forRoot(databaseSource[0]),
     TypeOrmModule.forRoot(databaseSource[1]),
+    MongooseModule.forRoot('mongodb://nest:nest@localhost:27017')
   ],
   controllers: [AppController],
   providers: [AppService, ChatGateway],
