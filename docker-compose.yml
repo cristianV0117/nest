@@ -1,12 +1,38 @@
 version: '3.6'
 
 services:
+  nest-app:
+    build: .
+    ports:
+      - '3000:3000'
+    expose:
+      - 3000
+    depends_on:
+      - nestjs-rabbitmq
+      - mySQL
+      - mySQL-nest
+      - mongo
   nestjs-rabbitmq:
     container_name: nestjs-rabbitmq
     image: rabbitmq:3-management
     ports:
       - '5672:5672'
       - '15672:15672'
+    expose:
+      - 5672
+  mySQL-nest:
+    container_name: mtdb-nest
+    image: 'mysql:latest'
+    ports:
+      - '3306:3306'
+    expose:
+      - 3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE=nest
+      - MYSQL_USER=
+      - MYSQL_ROOT_PASSWORD=nest
+      - MYSQL_TCP_PORT=3306
   mySQL:
     container_name: mtdb
     image: 'mysql:latest'
@@ -17,7 +43,7 @@ services:
     restart: always
     environment:
       - MYSQL_DATABASE=nestdocker
-      - MYSQL_USER=root
+      - MYSQL_USER=
       - MYSQL_ROOT_PASSWORD=nestdocker
       - MYSQL_TCP_PORT=3307
   mongo:

@@ -17,7 +17,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     CatsModule,
     TypeOrmModule.forRoot(databaseSource[0]),
     TypeOrmModule.forRoot(databaseSource[1]),
-    MongooseModule.forRoot('mongodb://nest:nest@localhost:27017')
+    MongooseModule.forRoot('mongodb://nest:nest@mongo:27017')
   ],
   controllers: [AppController],
   providers: [AppService, ChatGateway],
