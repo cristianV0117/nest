@@ -1,17 +1,17 @@
 version: '3.6'
 
 services:
-  nest-app:
-    build: .
-    ports:
-      - '3000:3000'
-    expose:
-      - 3000
-    depends_on:
-      - nestjs-rabbitmq
-      - mySQL
-      - mySQL-nest
-      - mongo
+  #nest-app:
+    #build: .
+    #ports:
+    #  - '3000:3000'
+    #expose:
+    #  - 3000
+    #depends_on:
+    #  - nestjs-rabbitmq
+    #  - mySQL
+    #  - mySQL-nest
+    #  - mongo
   nestjs-rabbitmq:
     container_name: nestjs-rabbitmq
     image: rabbitmq:3-management

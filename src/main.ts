@@ -7,7 +7,7 @@ async function bootstrap() {
   const microservice = app.connectMicroservice({
     transport: Transport.RMQ,
     options: {
-      urls: ['amqp://nestjs-rabbitmq:5672'],
+      urls: ['amqp://localhost:5672'],
       queue: 'cats_queue',
       queueOptions: {
         durable: false,

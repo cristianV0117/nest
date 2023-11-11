@@ -1,0 +1,21 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Lesson {
+  _id: ID!
+  name: String!
+  startDate: String!
+  endDate: String!
+}
+
+type Query {
+  """Retorna hola mundo"""
+  hello(to: String!): String!
+  randomNumber: Float!
+  lesson(id: String!): Lesson!
+}
+
+type Mutation {
+  createLesson(name: String!, startDate: String!, endDate: String!): Lesson!
+}
