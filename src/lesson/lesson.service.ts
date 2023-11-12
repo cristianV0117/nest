@@ -11,7 +11,7 @@ export class LessonService {
     ) {}
 
     async lessons(): Promise<Lesson[]> {
-        return this.lessonModel.find()
+        return this.lessonModel.find().populate('students')
     }
 
     async getLesson(id: string): Promise<Lesson> {
@@ -27,5 +27,14 @@ export class LessonService {
         })
 
         return newLesson.save()
+    }
+
+    async assignStudentToLesson(
+        lessonId: string,
+        studentsIds: string[]
+    ): Promise<Lesson> {
+        const lesson = await this.lessonModel.findOne({ _id: lessonId })
+        lesson.students = [...lesson.students, ...studentsIds]
+        return (await lesson.save()).populate('students')
     }
 }
