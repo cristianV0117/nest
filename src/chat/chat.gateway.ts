@@ -1,5 +1,5 @@
-import { ConnectedSocket, MessageBody, OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
-import { Server, Socket } from "socket.io";
+import { MessageBody, OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
+import { Server } from "socket.io";
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
@@ -7,15 +7,15 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
     @WebSocketServer() server: Server
 
     afterInit(server: any) {
-        console.log("Esto se ejecuta cuando inicia")
+        console.log("Esto se ejecuta cuando inicia: " + server)
     }
 
     handleConnection(client: any, ...args: any[]) {
-        console.log("Alguien se conecto al socket")
+        console.log("Alguien se conecto al socket: " + client)
     }
 
     handleDisconnect(client: any) {
-        console.log("Esto se ejecuta cuando se desconecta alguien")
+        console.log("Esto se ejecuta cuando se desconecta alguien: " + client)
     }
 
     @SubscribeMessage('message')

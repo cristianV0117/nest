@@ -4,7 +4,7 @@ import 'dotenv/config'
 
 @Injectable()
 export class ApiKeyMiddleware implements NestMiddleware {
-  use(req: Request, res: Response, next: NextFunction) {
+  use(req: Request, _res: Response, next: NextFunction) {
     if (undefined === req.headers.api_key) {
         throw new HttpException("No existe el API KEY", HttpStatus.BAD_REQUEST)
     }

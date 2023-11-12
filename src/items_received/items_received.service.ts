@@ -13,7 +13,7 @@ export class ItemsReceivedService {
           name: itemReceivedRequest.name,
           status: itemReceivedRequest.status
         })
-        const item = await this.itemRepository.save(newItem)
-        console.log("Item recibido")
+      await this.itemRepository.save(newItem);
+      console.log("Item recibido")
     }
 }

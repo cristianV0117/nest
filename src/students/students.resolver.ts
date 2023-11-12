@@ -9,19 +9,19 @@ export class StudentsResolver {
         private studentService: StudentsService
     ) {}
 
-    @Query(returns => [StudentType])
+    @Query(() => [StudentType])
     students() {
         return this.studentService.students()
     }
 
-    @Query(returns => StudentType)
+    @Query(() => StudentType)
     student(
         @Args('id') id: string
     ) {
         return this.studentService.student(id)
     }
 
-    @Mutation(returns => StudentType)
+    @Mutation(() => StudentType)
     createStudent(
         @Args('name') name: string
     ) {

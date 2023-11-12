@@ -1,6 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
-import { Observable } from 'rxjs';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {}

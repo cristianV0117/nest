@@ -8,6 +8,6 @@ export class CatsService {
     constructor(@Inject('CAT_SERVICE') private client: ClientProxy) {}
 
     async getCatName(name: string): Promise<Observable<any>> {
-        return await this.client.send({cmd: 'cats'}, name)
+        return this.client.send({ cmd: 'cats' }, name);
     }
 }

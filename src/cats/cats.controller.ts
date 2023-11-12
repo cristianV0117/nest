@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Logger} from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { Cat } from './dto/cat.dto';
 import { CatsService } from './cats.service';
 import { MessagePattern } from '@nestjs/microservices';

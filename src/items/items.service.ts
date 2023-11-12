@@ -9,7 +9,7 @@ import { ItemReceivedRequest } from 'src/items_received/request/item-received-re
 import { InjectModel } from '@nestjs/mongoose'
 import { Item as ItemMongo } from 'src/schemas/item.schema';
 import { Model } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 import { Category } from 'src/schemas/category.schema';
 
 @Injectable()
@@ -45,7 +45,7 @@ export class ItemsService {
       colors: ["Amarillo", "Negro", "Cafe", "Gris"],
       category: newCategory._id
     })
-    newItemMongo.save()
+    await newItemMongo.save()
     return item
   }
 

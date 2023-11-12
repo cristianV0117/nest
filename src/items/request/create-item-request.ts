@@ -3,8 +3,8 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class CreateItemRequest {
 
-    private name: string
-    private status: number
+    private readonly name: string
+    private readonly status: number
 
     constructor(createItemDto: CreateItemDto) {
         this.name = createItemDto.name
