@@ -15,6 +15,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { HelloWorldModule } from './hello-world/hello-world.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { LessonModule } from './lesson/lesson.module';
+import { StudentsModule } from './students/students.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { LessonModule } from './lesson/lesson.module';
       ]
     }),
     HelloWorldModule,
-    LessonModule
+    LessonModule,
+    StudentsModule
   ],
   controllers: [AppController],
   providers: [AppService, ChatGateway],

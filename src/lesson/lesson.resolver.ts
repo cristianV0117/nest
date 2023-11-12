@@ -8,6 +8,11 @@ export class LessonResolver {
     constructor(
         private lessonService: LessonService
     ) {}
+
+    @Query(returns => [LessonType])
+    lessons() {
+        return this.lessonService.lessons();
+    }
     
     @Query(returns => LessonType)
     lesson(

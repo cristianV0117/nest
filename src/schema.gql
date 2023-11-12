@@ -9,13 +9,22 @@ type Lesson {
   endDate: String!
 }
 
+type Student {
+  _id: ID!
+  name: String!
+}
+
 type Query {
   """Retorna hola mundo"""
   hello(to: String!): String!
   randomNumber: Float!
+  lessons: [Lesson!]!
   lesson(id: String!): Lesson!
+  students: [Student!]!
+  student(id: String!): Student!
 }
 
 type Mutation {
   createLesson(name: String!, startDate: String!, endDate: String!): Lesson!
+  createStudent(name: String!): Student!
 }

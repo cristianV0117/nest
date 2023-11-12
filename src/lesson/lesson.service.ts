@@ -10,6 +10,10 @@ export class LessonService {
         @InjectModel(Lesson.name) private lessonModel: Model<Lesson>
     ) {}
 
+    async lessons(): Promise<Lesson[]> {
+        return this.lessonModel.find()
+    }
+
     async getLesson(id: string): Promise<Lesson> {
         return this.lessonModel.findOne({ _id: id })
     }
