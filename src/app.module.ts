@@ -9,15 +9,17 @@ import { ChatGateway } from './chat/chat.gateway';
 import { databaseSource } from './database_source';
 import { ApiKeyMiddleware } from './middleware/api-key.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CategoriesModule } from "./categories/categories.module";
 
 @Module({
   imports: [
     ItemsModule,
     ItemsReceivedModule,
     CatsModule,
+    CategoriesModule,
     TypeOrmModule.forRoot(databaseSource[0]),
     TypeOrmModule.forRoot(databaseSource[1]),
-    MongooseModule.forRoot('mongodb://nest:nest@mongo:27017')
+    MongooseModule.forRoot('mongodb://nest:nest@localhost:27017')
   ],
   controllers: [AppController],
   providers: [AppService, ChatGateway],

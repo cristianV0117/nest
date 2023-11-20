@@ -25,7 +25,7 @@ import { Category, CategorySchema } from 'src/schemas/category.schema'
       name: 'CAT_SERVICE',
       transport: Transport.RMQ,
       options: {
-        urls: ['amqp://nestjs-rabbitmq:5672'],
+        urls: ['amqp://localhost:5672'],
         queue: 'cats_queue',
         queueOptions: {
           durable: false
