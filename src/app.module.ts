@@ -10,9 +10,13 @@ import { databaseSource } from './database_source';
 import { ApiKeyMiddleware } from './middleware/api-key.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CategoriesModule } from "./categories/categories.module";
+import { CronModule } from './cron/cron.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
+    ChatModule,
+    CronModule,
     ItemsModule,
     ItemsReceivedModule,
     CatsModule,

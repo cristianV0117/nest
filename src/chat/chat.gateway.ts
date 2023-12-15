@@ -7,19 +7,26 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
     @WebSocketServer() server: Server
 
     afterInit(server: any) {
-        console.log("Esto se ejecuta cuando inicia")
+        console.log('WebSocket Inicializado')
+
+        const io = require('socket.io')(server, {
+            cors: {
+                origin: '*',
+                credentials: false
+            },
+        });
     }
 
     handleConnection(client: any, ...args: any[]) {
-        console.log("Alguien se conecto al socket")
+        console.log(`Cliente conectado: ${client.id}`)
     }
 
     handleDisconnect(client: any) {
-        console.log("Esto se ejecuta cuando se desconecta alguien")
+        console.log(`Cliente desconectado: ${client.id}`)
     }
 
-    @SubscribeMessage('message')
+    /*@SubscribeMessage('message')
     handleMessage(@MessageBody() message: string): void {
         this.server.emit('message', message)
-    }
+    }*/
 }

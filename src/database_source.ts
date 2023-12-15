@@ -2,6 +2,8 @@ import { Item } from './items/entities/item.entity';
 import { ItemsReceived } from './items_received/entities/items_received.entity';
 import 'dotenv/config'
 import { Category } from "./categories/entities/category.entity";
+import { Chat } from './chat/entities/chat.entity';
+import { User } from './users/entities/user.entity';
 
 const databaseSource: { [key: string]: any }[] = [
     {
@@ -13,7 +15,7 @@ const databaseSource: { [key: string]: any }[] = [
         port: 3306,
         database: process.env.NEST_DATABASE_DB,
         //entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        entities: [Item, Category],
+        entities: [Item, Category, Chat, User],
         synchronize: true
     },
     {

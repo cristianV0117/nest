@@ -24,8 +24,8 @@ export class ItemsController {
 
   getItemReceived(itemReceived: ItemReceivedRequest) {
     this.itemsService.itemReceived(itemReceived)
-    const socket = io("http://localhost:3000")
-    socket.emit('message', { data: "hola" })
+    const socket = io("http://localhost:8080")
+    socket.emit('message', { data: "ITEM CREADO: " + itemReceived.getName() })
     socket.on('message', ({ data }) => {
       console.log(data)
       socket.disconnect()
