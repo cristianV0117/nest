@@ -12,6 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CategoriesModule } from "./categories/categories.module";
 import { CronModule } from './cron/cron.module';
 import { ChatModule } from './chat/chat.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { ChatModule } from './chat/chat.module';
     CategoriesModule,
     TypeOrmModule.forRoot(databaseSource[0]),
     TypeOrmModule.forRoot(databaseSource[1]),
-    MongooseModule.forRoot('mongodb://nest:nest@localhost:27017')
+    MongooseModule.forRoot('mongodb://nest:nest@localhost:27017'),
+    PaymentsModule
   ],
   controllers: [AppController],
   providers: [AppService, ChatGateway],

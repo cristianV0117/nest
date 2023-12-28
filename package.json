@@ -34,6 +34,7 @@
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.3",
     "dotenv": "^16.3.1",
+    "mercadopago": "^2.0.5",
     "mongoose": "^7.6.4",
     "mysql2": "^3.6.2",
     "ngx-socket-io": "^4.5.1",
